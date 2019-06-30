@@ -30,7 +30,7 @@ class User extends Model {
   static associate(models) {
     // associação de 1 para 1
     // salvar a refenrencia de um id de arquivo dentro da tabela de usuário
-    this.belongsTo(models.File, { foreignKey: 'avatar_id' });
+    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
   }
 
   checkPassword(password) {
