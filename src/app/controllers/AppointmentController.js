@@ -55,10 +55,18 @@ class AppointmentController {
       where: { id: provider_id, provider: true },
     });
 
+    // checa se é um provedor de serviços
     if (!isProvider) {
       return res
         .status(401)
         .json({ error: 'You can only create appointments with providers' });
+    }
+
+    // checa se o usuário está marcando com ele mesmo
+    if (req.userId === provider_id) {
+      return res
+        .status(401)
+        .json({ error: 'You cannot create an appointment with yourself' });
     }
 
     /**
