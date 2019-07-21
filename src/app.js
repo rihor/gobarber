@@ -3,6 +3,7 @@ import 'dotenv/config';
 
 import express from 'express';
 import path from 'path';
+import cors from 'cors';
 import * as Sentry from '@sentry/node';
 import Youch from 'youch';
 import 'express-async-errors';
@@ -25,6 +26,8 @@ class App {
   middlewares() {
     // The request handler must be the first middleware on the app
     this.server.use(Sentry.Handlers.requestHandler());
+    // permite o acesso de qualquer aplicação à API
+    this.server.use(cors());
     this.server.use(express.json());
     // servir arquivos estáticos
     this.server.use(
