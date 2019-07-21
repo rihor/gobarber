@@ -1,6 +1,10 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import AuthLayout from '../pages/_layouts/auth';
+import DefaulLayout from '../pages/_layouts/default';
+
 /**
  * Wrapper para Route do react-router-dom
  * Faz as devidas validações antes do usuário acessar a página
@@ -23,8 +27,20 @@ export default function RouteWrapper({
     return <Redirect to="/dashboard" />;
   }
 
+  // definição do layout
+  const Layout = signed ? DefaulLayout : AuthLayout;
+
   // retorna o componente acessado
-  return <Route {...rest} component={Component} />;
+  return (
+    <Route
+      {...rest}
+      render={props => (
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      )}
+    />
+  );
 }
 
 RouteWrapper.propTypes = {
