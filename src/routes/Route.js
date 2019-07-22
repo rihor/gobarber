@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import AuthLayout from '~/pages/_layouts/auth';
 import DefaulLayout from '~/pages/_layouts/default';
-
+import { store } from '~/store';
 /**
  * Wrapper para Route do react-router-dom
  * Faz as devidas validações antes do usuário acessar a página
@@ -15,7 +15,7 @@ export default function RouteWrapper({
   ...rest
 }) {
   // flag para usuário logado
-  const signed = false;
+  const { signed } = store.getState().auth;
 
   // caso o usuário não esteja logado e a rota for privada
   if (!signed && isPrivate) {
