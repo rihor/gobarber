@@ -22,7 +22,7 @@ export default function Appointment({ data, onCancel }) {
         ...data.provider,
         avatar: {
           ...data.provider.avatar,
-          url: `http://${ip}:3333/files/${data.provider.avatar.path}`,
+          url: data.provider.avatar.url.replace(/localhost/, ip),
         },
       },
     });
