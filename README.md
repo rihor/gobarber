@@ -8,3 +8,6 @@ Using technologies:
 - React Native
 - Redux
 - Express
+- Sequelize
+- Multer
+- JWT
